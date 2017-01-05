@@ -92,7 +92,7 @@ AtlasAtlas是奇虎360开源的一个MySQL代理中间件，我们可以使用At
 <meta property="og:site_name" content="记录">
 <meta property="og:description" content="分表在抢购的时候我们会面临大量的订单，这时候我们要对数据库进行大量的更新操作，这时候我们的数据库往往会成为我们系统的瓶颈，这时候我们可以对数据库进行分库分表来提高并发的更新速度。
 AtlasAtlas是奇虎360开源的一个MySQL代理中间件，我们可以使用Atlas来实现分表，这样我们可以不用改动我们的代码，便于维护，但是性能相对于直连数据库肯定会有所下降。github地址:Atlas安装和配置大">
-<meta property="og:updated_time" content="2017-01-05T04:18:29.826Z">
+<meta property="og:updated_time" content="2017-01-05T04:26:23.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高并发杂谈之二">
 <meta name="twitter:description" content="分表在抢购的时候我们会面临大量的订单，这时候我们要对数据库进行大量的更新操作，这时候我们的数据库往往会成为我们系统的瓶颈，这时候我们可以对数据库进行分库分表来提高并发的更新速度。
@@ -190,7 +190,7 @@ AtlasAtlas是奇虎360开源的一个MySQL代理中间件，我们可以使用At
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -200,7 +200,7 @@ AtlasAtlas是奇虎360开源的一个MySQL代理中间件，我们可以使用At
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -270,7 +270,7 @@ AtlasAtlas是奇虎360开源的一个MySQL代理中间件，我们可以使用At
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-04T14:18:18+08:00">
                 2017-01-04
@@ -309,7 +309,7 @@ AtlasAtlas是奇虎360开源的一个MySQL代理中间件，我们可以使用At
 
       
         <h3 id="分表"><a href="#分表" class="headerlink" title="分表"></a>分表</h3><p>在抢购的时候我们会面临大量的订单，这时候我们要对数据库进行大量的更新操作，这时候我们的数据库往往会成为我们系统的瓶颈，这时候我们可以对数据库进行分库分表来提高并发的更新速度。</p>
-<h3 id="Atlas"><a href="#Atlas" class="headerlink" title="Atlas"></a>Atlas</h3><p>Atlas是奇虎360开源的一个MySQL代理中间件，我们可以使用Atlas来实现分表，这样我们可以不用改动我们的代码，便于维护，但是性能相对于直连数据库肯定会有所下降。<br>github地址:<a href="https://github.com/Qihoo360/Atlas" target="_blank" rel="external">Atlas</a><br>安装和配置大家可以参考官方文档，下面我们就说说，订单表应该怎么分表。<br>假设我们订单主要涉及这三张表：<br>用户表：user<br>订单表：order<br>订单子表：order_line<br>我们通过Atlas执行操作时，Atlas会根据我们的分表字段来定位到相应的表，所以我们要先确定好我们的分表字段。<br>我们的客户端一般都是通过user_id来查询我们的订单，通过order_id来查询我们的订单详情。所以我们可以把order表的分表字段定为user_id，order_line表的分表字段定为order_id。  </p>
+<h3 id="Atlas"><a href="#Atlas" class="headerlink" title="Atlas"></a>Atlas</h3><p>Atlas是奇虎360开源的一个MySQL代理中间件，我们可以使用Atlas来实现分表，这样我们可以不用改动我们的代码，便于维护，但是性能相对于直连数据库肯定会有所下降。<br>github地址:<a href="https://github.com/Qihoo360/Atlas" target="_blank" rel="external">Atlas</a><br>安装和配置大家可以参考官方文档，下面我们就说说，订单表应该怎么分表。<br>假设我们订单主要涉及这三张表：<br>用户表：user<br>订单表：order<br>订单子表：order_line<br>我们通过Atlas执行操作时，Atlas会根据我们的分表字段来定位到相应的表，所以我们要先确定好我们的分表字段。<br>我们的客户端一般都是通过user_id来查询我们的订单，通过order_number来查询我们的订单详情。所以我们可以把order表的分表字段定为user_id，order_line表的分表字段定为order_number。  </p>
 
       
     </div>
@@ -393,10 +393,10 @@ AtlasAtlas是奇虎360开源的一个MySQL代理中间件，我们可以使用At
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -415,7 +415,7 @@ AtlasAtlas是奇虎360开源的一个MySQL代理中间件，我们可以使用At
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -483,7 +483,7 @@ AtlasAtlas是奇虎360开源的一个MySQL代理中间件，我们可以使用At
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
