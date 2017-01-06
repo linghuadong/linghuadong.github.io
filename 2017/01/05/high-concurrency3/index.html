@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="秒杀或者抢购的超卖问题：假设50个人同时抢购1件商品，我们先查询商品是否有库存select stock_quantity from sec_product WHERE id=?;然后判断是否大于0，再减库存和插入订单UPDATE sec_product SET stock_quantity=stock_quantity-1 WHERE id=?;这时候就会出现问题，如果50个请求几乎同时到达，大家">
+<meta name="description" content="消息队列我们知道对数据库进行更新操作(update,insert)是比较慢的，这个常常会成为我们在高并发场景下的瓶颈。这时候我们就会想这个可不可以异步去处理，比如说我们在内存里把订单生成好了就可以告诉用户购买成功了，然后我们再异步的去更新数据库。这时候我们就可以利用消息队列，我们在接受到请求，然后生成订单对象，之后通过消息队列发送出去，这时候就可以返回购买成功的消息了。最后再由订阅端来持久化到数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高并发杂谈之一">
-<meta property="og:url" content="http://yoursite.com/2017/01/01/high-concurrency/index.html">
+<meta property="og:title" content="高并发杂谈之三">
+<meta property="og:url" content="http://yoursite.com/2017/01/05/high-concurrency3/index.html">
 <meta property="og:site_name" content="记录">
-<meta property="og:description" content="秒杀或者抢购的超卖问题：假设50个人同时抢购1件商品，我们先查询商品是否有库存select stock_quantity from sec_product WHERE id=?;然后判断是否大于0，再减库存和插入订单UPDATE sec_product SET stock_quantity=stock_quantity-1 WHERE id=?;这时候就会出现问题，如果50个请求几乎同时到达，大家">
-<meta property="og:updated_time" content="2017-01-04T05:30:42.913Z">
+<meta property="og:description" content="消息队列我们知道对数据库进行更新操作(update,insert)是比较慢的，这个常常会成为我们在高并发场景下的瓶颈。这时候我们就会想这个可不可以异步去处理，比如说我们在内存里把订单生成好了就可以告诉用户购买成功了，然后我们再异步的去更新数据库。这时候我们就可以利用消息队列，我们在接受到请求，然后生成订单对象，之后通过消息队列发送出去，这时候就可以返回购买成功的消息了。最后再由订阅端来持久化到数据">
+<meta property="og:updated_time" content="2017-01-06T04:07:22.658Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高并发杂谈之一">
-<meta name="twitter:description" content="秒杀或者抢购的超卖问题：假设50个人同时抢购1件商品，我们先查询商品是否有库存select stock_quantity from sec_product WHERE id=?;然后判断是否大于0，再减库存和插入订单UPDATE sec_product SET stock_quantity=stock_quantity-1 WHERE id=?;这时候就会出现问题，如果50个请求几乎同时到达，大家">
+<meta name="twitter:title" content="高并发杂谈之三">
+<meta name="twitter:description" content="消息队列我们知道对数据库进行更新操作(update,insert)是比较慢的，这个常常会成为我们在高并发场景下的瓶颈。这时候我们就会想这个可不可以异步去处理，比如说我们在内存里把订单生成好了就可以告诉用户购买成功了，然后我们再异步的去更新数据库。这时候我们就可以利用消息队列，我们在接受到请求，然后生成订单对象，之后通过消息队列发送出去，这时候就可以返回购买成功的消息了。最后再由订阅端来持久化到数据">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/01/01/high-concurrency/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/05/high-concurrency3/"/>
 
 
 
 
 
-  <title> 高并发杂谈之一 | 记录 </title>
+  <title> 高并发杂谈之三 | 记录 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -230,7 +230,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/01/high-concurrency/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/05/high-concurrency3/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Ling D">
@@ -254,7 +254,7 @@
             
             
               
-                高并发杂谈之一
+                高并发杂谈之三
               
             
           </h1>
@@ -269,8 +269,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-01T20:25:00+08:00">
-                2017-01-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-05T17:41:46+08:00">
+                2017-01-05
               </time>
             
 
@@ -305,7 +305,7 @@
       
 
       
-        <h3 id="秒杀或者抢购的超卖问题："><a href="#秒杀或者抢购的超卖问题：" class="headerlink" title="秒杀或者抢购的超卖问题："></a>秒杀或者抢购的超卖问题：</h3><p>假设50个人同时抢购1件商品，我们先查询商品是否有库存<br><code>select stock_quantity from sec_product WHERE id=?;</code><br>然后判断是否大于0，再减库存和插入订单<br><code>UPDATE sec_product SET stock_quantity=stock_quantity-1 WHERE id=?;</code><br>这时候就会出现问题，如果50个请求几乎同时到达，大家查询到的库存数量都是一样的，这时大家都会去减库存和生成订单，这是就是出现剩余库存为-49件，即超卖了49件的情况。<br>为了避免这种情况的出现，我们一般会把我们的减库存语句改成这样：<br><code>UPDATE sec_product SET stock_quantity=stock_quantity-1 WHERE id=? AND stock_quantity&gt;0;</code><br>这时候我们的库存就不会减到负数了。<br>但是这样子还会出现一个问题，就是我们的update操作数据库是会加上锁的，获取到锁的用户去更新，而没有获取锁的用户也只能干等着，这样我们的用户得到反馈的速度可能会很慢，而且我们的服务器也可能因为资源耗尽而宕机（因为处理速度不如进来的速度快，会越积越多）。<br>这时候我们会再改进一下<br>先把库存查询出来<br><code>select stock_quantity from sec_product WHERE id=?;</code><br>然后在减库存的时候加上我们查询出来的库存数<br><code>UPDATE sec_product SET stock_quantity=stock_quantity-1 WHERE id=#{id} AND stock_quantity=?;</code><br>然后更新记录为0的话就直接返回没抢到，这样就不会阻塞了。</p>
+        <h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>我们知道对数据库进行更新操作(update,insert)是比较慢的，这个常常会成为我们在高并发场景下的瓶颈。这时候我们就会想这个可不可以异步去处理，比如说我们在内存里把订单生成好了就可以告诉用户购买成功了，然后我们再异步的去更新数据库。这时候我们就可以利用消息队列，我们在接受到请求，然后生成订单对象，之后通过消息队列发送出去，这时候就可以返回购买成功的消息了。最后再由订阅端来持久化到数据库。</p>
 
       
     </div>
@@ -332,15 +332,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/01/04/high-concurrency2/" rel="next" title="高并发杂谈之二">
+                <i class="fa fa-chevron-left"></i> 高并发杂谈之二
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/04/high-concurrency2/" rel="prev" title="高并发杂谈之二">
-                高并发杂谈之二 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -449,7 +449,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#秒杀或者抢购的超卖问题："><span class="nav-number">1.</span> <span class="nav-text">秒杀或者抢购的超卖问题：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列"><span class="nav-number">1.</span> <span class="nav-text">消息队列</span></a></li></ol></div>
             
 
           </div>
