@@ -312,7 +312,7 @@
         
           
             <h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>我们知道对数据库进行更新操作(update,insert)是比较慢的，这个常常会成为我们在高并发场景下的瓶颈。这时候我们就会想这个可不可以异步去处理，比如说我们在内存里把订单生成好了就可以告诉用户购买成功了，然后我们再异步的去更新数据库。这时候我们就可以利用消息队列，我们在接受到请求，然后生成订单对象，之后通过消息队列发送出去，这时候就可以返回购买成功的消息了。最后再由订阅端来持久化到数据库。</p>
-<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>如果我们异步的操作数据库，这时候我们会遇到一个问题就是，我们数据库里面的库存就不是我们的真实库存了，所以我们要把库存先缓存起来，然后直接扣减缓存里面的库存，这时候就可以用到Redis，我们只要把我们的库存set进redis然后再利用Redis提供的原子操作来减库存就可以了。  </p>
+<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>如果我们异步的操作数据库，这时候我们会遇到一个问题就是，我们数据库里面的库存就不是我们的真实库存了，所以我们要把库存先缓存起来，然后直接扣减缓存里面的库存，这时候就可以用到Redis，我们只要把我们的库存保存到redis然后再利用乐观锁来减库存就可以了。  </p>
 <h3 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h3><p><a href="https://github.com/linghuadong/concurrent-demo" target="_blank" rel="external">github</a></p>
 
           
