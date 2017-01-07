@@ -86,13 +86,13 @@
 
 <meta name="description" content="秒杀或者抢购的超卖问题：假设50个人同时抢购1件商品，我们先查询商品是否有库存select stock_quantity from sec_product WHERE id=?;然后判断是否大于0，再减库存和插入订单UPDATE sec_product SET stock_quantity=stock_quantity-1 WHERE id=?;这时候就会出现问题，如果50个请求几乎同时到达，大家">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高并发杂谈之一">
+<meta property="og:title" content="高并发抢购杂谈之一">
 <meta property="og:url" content="http://yoursite.com/2017/01/01/high-concurrency/index.html">
 <meta property="og:site_name" content="记录">
 <meta property="og:description" content="秒杀或者抢购的超卖问题：假设50个人同时抢购1件商品，我们先查询商品是否有库存select stock_quantity from sec_product WHERE id=?;然后判断是否大于0，再减库存和插入订单UPDATE sec_product SET stock_quantity=stock_quantity-1 WHERE id=?;这时候就会出现问题，如果50个请求几乎同时到达，大家">
-<meta property="og:updated_time" content="2017-01-04T05:30:42.913Z">
+<meta property="og:updated_time" content="2017-01-07T16:12:42.868Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高并发杂谈之一">
+<meta name="twitter:title" content="高并发抢购杂谈之一">
 <meta name="twitter:description" content="秒杀或者抢购的超卖问题：假设50个人同时抢购1件商品，我们先查询商品是否有库存select stock_quantity from sec_product WHERE id=?;然后判断是否大于0，再减库存和插入订单UPDATE sec_product SET stock_quantity=stock_quantity-1 WHERE id=?;这时候就会出现问题，如果50个请求几乎同时到达，大家">
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title> 高并发杂谈之一 | 记录 </title>
+  <title> 高并发抢购杂谈之一 | 记录 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -254,7 +254,7 @@
             
             
               
-                高并发杂谈之一
+                高并发抢购杂谈之一
               
             
           </h1>
@@ -338,8 +338,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/04/high-concurrency2/" rel="prev" title="高并发杂谈之二">
-                高并发杂谈之二 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/04/high-concurrency2/" rel="prev" title="高并发抢购杂谈之二">
+                高并发抢购杂谈之二 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
