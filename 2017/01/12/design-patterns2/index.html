@@ -84,34 +84,49 @@
 
 
 
-<meta name="description" content="synchronizedpublic class Singleton1 {
-    private Singleton1() {}
+<meta name="description" content="抽象类public abstract class Template1 {
 
-    private static Singleton1 singleton1 = null;
+    public void method() {
+        method1();
+        method2();method3();
+    }
 
-    public static Singleton1 getInstance() {
-        if (singleton1 == null) {">
+    abstract void method1();
+
+    abstract void method2();
+
+    abstract void me">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java实现单例模式">
-<meta property="og:url" content="http://yoursite.com/2017/01/12/design-patterns/index.html">
+<meta property="og:title" content="java实现模板方法模式">
+<meta property="og:url" content="http://yoursite.com/2017/01/12/design-patterns2/index.html">
 <meta property="og:site_name" content="记录">
-<meta property="og:description" content="synchronizedpublic class Singleton1 {
-    private Singleton1() {}
+<meta property="og:description" content="抽象类public abstract class Template1 {
 
-    private static Singleton1 singleton1 = null;
+    public void method() {
+        method1();
+        method2();method3();
+    }
 
-    public static Singleton1 getInstance() {
-        if (singleton1 == null) {">
-<meta property="og:updated_time" content="2017-01-12T08:19:37.565Z">
+    abstract void method1();
+
+    abstract void method2();
+
+    abstract void me">
+<meta property="og:updated_time" content="2017-01-12T08:59:18.282Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java实现单例模式">
-<meta name="twitter:description" content="synchronizedpublic class Singleton1 {
-    private Singleton1() {}
+<meta name="twitter:title" content="java实现模板方法模式">
+<meta name="twitter:description" content="抽象类public abstract class Template1 {
 
-    private static Singleton1 singleton1 = null;
+    public void method() {
+        method1();
+        method2();method3();
+    }
 
-    public static Singleton1 getInstance() {
-        if (singleton1 == null) {">
+    abstract void method1();
+
+    abstract void method2();
+
+    abstract void me">
 
 
 
@@ -139,13 +154,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/01/12/design-patterns/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/12/design-patterns2/"/>
 
 
 
 
 
-  <title> java实现单例模式 | 记录 </title>
+  <title> java实现模板方法模式 | 记录 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -248,7 +263,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/12/design-patterns/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/12/design-patterns2/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Ling D">
@@ -272,7 +287,7 @@
             
             
               
-                java实现单例模式
+                java实现模板方法模式
               
             
           </h1>
@@ -287,7 +302,7 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-12T15:15:10+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-12T16:57:44+08:00">
                 2017-01-12
               </time>
             
@@ -323,47 +338,33 @@
       
 
       
-        <h3 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h3><pre><code>public class Singleton1 {
-    private Singleton1() {}
+        <h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><pre><code>public abstract class Template1 {
 
-    private static Singleton1 singleton1 = null;
-
-    public static Singleton1 getInstance() {
-        if (singleton1 == null) {
-            synchronized (Singleton1.class) {
-                if (singleton1 == null) {
-                    singleton1 = new Singleton1();
-                }
-            }
-        }
-        return singleton1;
+    public void method() {
+        method1();
+        method2();method3();
     }
+
+    abstract void method1();
+
+    abstract void method2();
+
+    abstract void method3();
+
 }
-</code></pre><h3 id="内部静态类"><a href="#内部静态类" class="headerlink" title="内部静态类"></a>内部静态类</h3><pre><code>public class Singleton2 {
+</code></pre><h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><pre><code>public interface Template2 {
 
-    private Singleton2() {}
-
-    private static class singleton2Holder {
-        private static final Singleton2 SINGLETON_2 = new Singleton2();
+    default public void method() {
+        method1();
+        method2();
+        method3();
     }
 
-    public static Singleton2 getInstance() {
-        return singleton2Holder.SINGLETON_2;
-    }
-}
-</code></pre><h3 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h3><pre><code>public class Singleton3 {
-    private Singleton3() {}
+    void method1();
 
-    private static final Singleton3 SINGLETON_3 = new Singleton3();
+    void method2();
 
-    public static Singleton3 getInstance() {
-        return SINGLETON_3;
-    }
-}
-</code></pre><h3 id="枚举【推荐】"><a href="#枚举【推荐】" class="headerlink" title="枚举【推荐】"></a>枚举【推荐】</h3><pre><code>public enum  Singleton4 {
-    SINGLETON4;
-
-    private Singleton4() {}
+    void method3();
 }
 </code></pre>
       
@@ -391,8 +392,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/05/high-concurrency3/" rel="next" title="高并发抢购杂谈之三">
-                <i class="fa fa-chevron-left"></i> 高并发抢购杂谈之三
+              <a href="/2017/01/12/design-patterns/" rel="next" title="java实现单例模式">
+                <i class="fa fa-chevron-left"></i> java实现单例模式
               </a>
             
           </div>
@@ -400,10 +401,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/12/design-patterns2/" rel="prev" title="java实现模板方法模式">
-                java实现模板方法模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -512,7 +509,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized"><span class="nav-number">1.</span> <span class="nav-text">synchronized</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部静态类"><span class="nav-number">2.</span> <span class="nav-text">内部静态类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#饿汉式"><span class="nav-number">3.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举【推荐】"><span class="nav-number">4.</span> <span class="nav-text">枚举【推荐】</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象类"><span class="nav-number">1.</span> <span class="nav-text">抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口"><span class="nav-number">2.</span> <span class="nav-text">接口</span></a></li></ol></div>
             
 
           </div>
