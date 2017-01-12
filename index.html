@@ -188,7 +188,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -198,7 +198,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -221,6 +221,166 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/12/design-patterns/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Ling D">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://imgsrc.baidu.com/forum/pic/item/904467086e061d95508d591173f40ad163d9ca91.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="记录">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="记录" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/12/design-patterns/" itemprop="url">
+                  java实现单例模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-12T15:15:10+08:00">
+                2017-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h3><pre><code>public class Singleton1 {
+    private Singleton1() {}
+
+    private static Singleton1 singleton1 = null;
+
+    public static Singleton1 getInstance() {
+        if (singleton1 == null) {
+            synchronized (Singleton1.class) {
+                if (singleton1 == null) {
+                    singleton1 = new Singleton1();
+                }
+            }
+        }
+        return singleton1;
+    }
+}
+</code></pre><h3 id="内部静态类"><a href="#内部静态类" class="headerlink" title="内部静态类"></a>内部静态类</h3><pre><code>public class Singleton2 {
+
+    private Singleton2() {}
+
+    private static class singleton2Holder {
+        private static final Singleton2 SINGLETON_2 = new Singleton2();
+    }
+
+    public static Singleton2 getInstance() {
+        return singleton2Holder.SINGLETON_2;
+    }
+}
+</code></pre><h3 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h3><pre><code>public class Singleton3 {
+    private Singleton3() {}
+
+    private static final Singleton3 SINGLETON_3 = new Singleton3();
+
+    public static Singleton3 getInstance() {
+        return SINGLETON_3;
+    }
+}
+</code></pre><h3 id="枚举【推荐】"><a href="#枚举【推荐】" class="headerlink" title="枚举【推荐】"></a>枚举【推荐】</h3><pre><code>public enum  Singleton4 {
+    SINGLETON4;
+
+    private Singleton4() {}
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -271,7 +431,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-05T17:41:46+08:00">
                 2017-01-05
@@ -392,7 +552,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-04T14:18:18+08:00">
                 2017-01-04
@@ -512,7 +672,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-01T20:25:00+08:00">
                 2017-01-01
@@ -625,8 +785,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -678,7 +838,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
